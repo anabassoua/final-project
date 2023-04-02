@@ -1,22 +1,18 @@
 import { useState } from "react";
 import styled from "styled-components";
-import avatar from "./assets/avatar_icon.png";
+import avatar from "../assets/avatar_icon.png";
 import DropDownProfile from "./DropDownProfile";
 const Header = () => {
-  const [openProfile, setOpenProfile] = useState(false);
+  // const [openProfile, setOpenProfile] = useState(false);
   return (
     <Container>
       <Input type="text" placeholder="Search"></Input>
-      <div>
-        <Img
-          src={avatar}
-          alt="avatar"
-          onClick={() => {
-            setOpenProfile(!openProfile);
-          }}
-        />
-        {openProfile && <DropDownProfile />}
-      </div>
+      <ProfileDiv>
+        <button>Sign in</button>
+        <button>Sign up</button>
+        <Img src={avatar} alt="avatar" />
+        {/* {openProfile && <DropDownProfile />} */}
+      </ProfileDiv>
     </Container>
   );
 };
@@ -46,5 +42,9 @@ const Input = styled.input`
 const Img = styled.img`
   height: 40px;
   cursor: pointer;
+`;
+
+const ProfileDiv = styled.div`
+  display: flex;
 `;
 export default Header;

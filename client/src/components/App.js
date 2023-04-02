@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GlobalStyles from "./components/GlobalStyles";
+import GlobalStyles from "./GlobalStyles";
 import SideBar from "./SideBar";
 import Homepage from "./Homepage";
 import Header from "./Header";
