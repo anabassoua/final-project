@@ -24,6 +24,10 @@ body {
       color: var( --font-color)
   }
 
+  ol, ul {
+      list-style: none;
+  }
+
 h1, h2, h3, label, button {
   font-family: var(--font-heading);
 }

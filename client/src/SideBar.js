@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Logo from "./assets/logo.png";
+import { Link } from "react-router-dom";
+
 const SideBar = () => {
   return (
     <BarContainer>
       <div>
-        <Img src={Logo}></Img>
+        <Img src={Logo} alt="logo"></Img>
       </div>
     </BarContainer>
   );
@@ -22,4 +24,5 @@ const Img = styled.img`
   width: 130px;
   border-radius: 50%;
 `;
+
 export default SideBar;

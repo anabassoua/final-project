@@ -11,12 +11,12 @@ const App = () => {
       <GlobalStyles />
       <Main>
         <SideBar />
-        <Div>
+        <RightContainer>
           <Header />
           <Routes>
             <Route path="/" element={<Homepage />} />
           </Routes>
-        </Div>
+        </RightContainer>
       </Main>
     </BrowserRouter>
   );
@@ -26,7 +26,7 @@ const Main = styled.div`
   display: flex;
 `;
 
-const Div = styled.div`
+const RightContainer = styled.div`
   width: 100%;
 `;
 export default App;
