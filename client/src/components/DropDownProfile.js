@@ -1,12 +1,14 @@
 import styled from "styled-components";
+import SigninButton from "./SigninButton";
+import SignoutButton from "./SignoutButton";
 
 const DropDownProfile = () => {
   return (
     <Div>
       <ul>
-        <li>Sign in</li>
-        <li>Sign up</li>
-        <li>About us</li>
+        <li>{<SigninButton />}</li>
+        <li>{<SignoutButton />}</li>
+        <li>Profile</li>
       </ul>
     </Div>
   );

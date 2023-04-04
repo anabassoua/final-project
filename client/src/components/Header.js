@@ -2,16 +2,34 @@ import { useState } from "react";
 import styled from "styled-components";
 import avatar from "../assets/avatar_icon.png";
 import DropDownProfile from "./DropDownProfile";
+import SigninButton from "./SigninButton";
+import SignoutButton from "./SignoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
+
 const Header = () => {
-  // const [openProfile, setOpenProfile] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  if (isLoading) {
+    return <div>is loading..</div>;
+  }
   return (
     <Container>
       <Input type="text" placeholder="Search"></Input>
       <ProfileDiv>
-        <button>Sign in</button>
-        <button>Sign up</button>
-        <Img src={avatar} alt="avatar" />
-        {/* {openProfile && <DropDownProfile />} */}
+        {openProfile && <DropDownProfile />}
+        {isAuthenticated ? (
+          <Img
+            src={user.picture}
+            alt="picture"
+            onClick={() => setOpenProfile((openProfile) => !openProfile)}
+          />
+        ) : (
+          <Img
+            src={avatar}
+            alt="avatar"
+            onClick={() => setOpenProfile((openProfile) => !openProfile)}
+          />
+        )}
       </ProfileDiv>
     </Container>
   );
@@ -42,6 +60,7 @@ const Input = styled.input`
 const Img = styled.img`
   height: 40px;
   cursor: pointer;
+  border-radius: 50%;
 `;
 
 const ProfileDiv = styled.div`

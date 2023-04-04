@@ -4,6 +4,7 @@ import GlobalStyles from "./GlobalStyles";
 import SideBar from "./SideBar";
 import Homepage from "./Homepage";
 import Header from "./Header";
+import Profile from "./Profile";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </RightContainer>
       </Main>
