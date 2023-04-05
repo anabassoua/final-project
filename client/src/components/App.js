@@ -1,26 +1,31 @@
 import styled from "styled-components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
 import SideBar from "./SideBar";
 import Homepage from "./Homepage";
 import Header from "./Header";
 import Profile from "./Profile";
+import SignUp from "./SignUp";
 
 const App = () => {
+  const excludedRoutes = ["/signup"];
+  const location = useLocation();
+  const renderHeaderAndSidebar = !excludedRoutes.includes(location.pathname);
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyles />
       <Main>
-        <SideBar />
+        {renderHeaderAndSidebar && <SideBar />}
         <RightContainer>
-          <Header />
+          {renderHeaderAndSidebar && <Header />}
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </RightContainer>
       </Main>
-    </BrowserRouter>
+    </>
   );
 };
 

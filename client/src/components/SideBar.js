@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <BarContainer>
-      <div>
-        <Img src={Logo} alt="logo"></Img>
-      </div>
+      <Div to="/">Movie Finder</Div>
     </BarContainer>
   );
 };
@@ -19,10 +17,12 @@ const BarContainer = styled.div`
   height: 100vh;
 `;
 
-const Img = styled.img`
-  height: 130px;
-  width: 130px;
-  border-radius: 50%;
+const Div = styled(Link)`
+  font-family: var(--font-logo);
+  color: var(--mint);
+  padding: 15px;
+  font-size: 2rem;
+  text-decoration: inherit;
 `;
 
 export default SideBar;

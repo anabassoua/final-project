@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import SigninButton from "./SigninButton";
 import SignoutButton from "./SignoutButton";
+import { Link } from "react-router-dom";
 
 const DropDownProfile = () => {
   return (
     <Div>
-      <ul>
-        <li>{<SigninButton />}</li>
-        <li>{<SignoutButton />}</li>
-        <li>Profile</li>
-      </ul>
+      <div>{<SigninButton />}</div>
+      <div>Sign up</div>
+      <div>{<SignoutButton />}</div>
+      <Li to="/profile">Profile</Li>
     </Div>
   );
 };
@@ -38,4 +38,6 @@ const Div = styled.div`
     background-color: #fff;
   }
 `;
+
+const Li = styled(Link)``;
 export default DropDownProfile;

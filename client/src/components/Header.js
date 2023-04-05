@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import avatar from "../assets/avatar_icon.png";
 import DropDownProfile from "./DropDownProfile";
-import SigninButton from "./SigninButton";
-import SignoutButton from "./SignoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
+
+  // useEffect(() => {
+  //   setOpenProfile(false);
+  // }, []);
+
   if (isLoading) {
     return <div>is loading..</div>;
   }
+
   return (
     <Container>
       <Input type="text" placeholder="Search"></Input>

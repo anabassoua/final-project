@@ -8,6 +8,7 @@ export default createGlobalStyle`
     --mint: #00c896;
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Roboto', sans-serif;
+    --font-logo: 'Roboto', sans-serif;
 }
 
 html, body, div, span, h1, h2, h3, h4, img, em, ol, ul, li, form, nav, footer, header, p{
