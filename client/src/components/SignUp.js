@@ -1,8 +1,33 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({});
+
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const ValidateForm = () => {
+    if (formData.password !== formData.confirm) {
+      setError("Password do not match!");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const isValid = ValidateForm();
+    if (isValid) {
+      console.log("ok");
+    }
   };
   return (
     <Container>
@@ -16,36 +41,42 @@ const SignUp = () => {
                 name="firstname"
                 type="text"
                 placeholder="First Name"
+                onChange={handleChange}
               />
               <Input
                 required
                 name="lastName"
                 type="text"
                 placeholder="Last Name"
+                onChange={handleChange}
               />
             </Names>
 
             <Email
               required
               name="email"
-              type="text"
+              type="email"
               placeholder="example@email.com"
+              onChange={handleChange}
             />
 
             <Passwords>
               <Input
                 required
                 name="password"
-                type="text"
+                type="password"
                 placeholder="Password"
+                onChange={handleChange}
               />
               <Input
                 required
                 name="confirm"
-                type="text"
+                type="password"
                 placeholder="Confirm Password"
+                onChange={handleChange}
               />
             </Passwords>
+            {error && <div>{error}</div>}
             <SubmitButton type="submit" value="Sign Up" />
           </InputContainer>
         </form>
