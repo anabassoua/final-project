@@ -17,6 +17,9 @@ const SignUp = () => {
     if (formData.password !== formData.confirm) {
       setError("Password do not match!");
       return false;
+    } else if (formData.password.length < 3) {
+      setError("Password must be at least 3 characters!");
+      return false;
     }
     setError("");
     return true;
@@ -76,7 +79,7 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </Passwords>
-            {error && <div>{error}</div>}
+            {error && <Error>{error}</Error>}
             <SubmitButton type="submit" value="Sign Up" />
           </InputContainer>
         </form>
@@ -147,4 +150,9 @@ const SubmitButton = styled.input`
   cursor: pointer;
 `;
 
+const Error = styled.span`
+  color: red;
+  width: 290px;
+  margin-left: 15px;
+`;
 export default SignUp;
