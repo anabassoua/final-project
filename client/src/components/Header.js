@@ -65,7 +65,8 @@ const Container = styled.div`
   padding: 15px;
   height: 100px;
   width: auto;
-  border: 1px solid red;
+  background-color: var(--richblack-bg);
+  /* border: 1px solid red; */
 `;
 
 const Input = styled.input`

@@ -2,15 +2,13 @@ import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 import JSONPretty from "react-json-pretty";
 import { useState, useEffect } from "react";
-// import { Icon } from "react-icons-kit";
-// import { angleLeft } from "react-icons-kit/fa/angleLeft";
-// import { angleRight } from "react-icons-kit/fa/angleRight";
+import { Icon } from "react-icons-kit";
+import { star } from "react-icons-kit/fa/star";
 
 const HomePage = () => {
   // const { user } = useAuth0();
   // return <JSONPretty data={user} />;
   const [trending, setTrending] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     fetch("/trending")
@@ -24,36 +22,30 @@ const HomePage = () => {
       });
   }, []);
 
-  const handleSlideLeft = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? trending.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleSlideRight = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === trending.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
   return (
     <div>
-      <h2>Trending Movies</h2>
+      <Heading>Trending Movies</Heading>
       <CarouselContainer>
-        {trending.map((movie, index) => (
+        {trending.map((movie) => (
           <CarouselItem key={movie.id}>
             <Img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
             />
-            <p>{movie.title}</p>
+            <Title>{movie.title}</Title>
+            <RatingContainer>
+              <Icon icon={star} style={{ color: "var(--mint)" }} />
+              <p> {movie.vote_average}</p>
+            </RatingContainer>
           </CarouselItem>
         ))}
       </CarouselContainer>
     </div>
   );
 };
-
+const Heading = styled.h2`
+  padding: 15px;
+`;
 const CarouselContainer = styled.div`
   padding: 20px;
   position: relative;
@@ -62,17 +54,42 @@ const CarouselContainer = styled.div`
   overflow-x: auto;
   scroll-behavior: smooth;
   transition: transform 0.5s ease-in-out;
+
+  // Let's hide the scrollbar for Chrome, Safari & Opera users
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; // Edge
+  scrollbar-width: none; // Firefox
 `;
 
 const CarouselItem = styled.div`
   flex-shrink: 0;
   margin-right: 10;
+  /* border: 1px solid green; */
+  height: 450px;
+  background-color: var(--richblack-bg);
+  border-radius: 10px;
+  max-width: 252px;
 `;
 
 const Img = styled.img`
   width: 250px;
-  height: 400px;
+  height: 320px;
   border-radius: 10px;
+`;
+
+const Title = styled.p`
+  padding-left: 15px;
+  padding-top: 15px;
+`;
+const RatingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 15px;
+  padding-top: 5px;
 `;
 
 export default HomePage;

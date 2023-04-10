@@ -26,6 +26,7 @@ const Div = styled.div`
   color: gray;
   padding: 15px;
   line-height: 1.5rem;
+  z-index: 1000;
 
   &::before {
     content: "";
