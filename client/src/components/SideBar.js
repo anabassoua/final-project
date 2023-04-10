@@ -13,8 +13,9 @@ const SideBar = () => {
 const BarContainer = styled.div`
   color: #fff;
   background-color: var(--richblack-bg);
-  width: 300px;
+  width: 250px;
   height: 100vh;
+  flex-shrink: 0;
 `;
 
 const Div = styled(Link)`

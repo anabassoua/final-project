@@ -34,6 +34,6 @@ const Main = styled.div`
 `;
 
 const RightContainer = styled.div`
-  width: 100%;
+  width: calc(100% - 250px);
 `;
 export default App;

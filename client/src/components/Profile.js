@@ -2,19 +2,24 @@ import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, logout } = useAuth0();
 
   if (isLoading) {
     return <div>is loading..</div>;
   }
 
+  //handle deleting user:
+  const handleDeleteUser = () => {};
+
   return (
     <Container>
       {isAuthenticated ? (
         <>
-          <Div>1</Div>
+          <Div>{user.nickname}</Div>
           <Div>2</Div>
-          <Div>3</Div>
+          <Div>
+            <button>DELETE</button>
+          </Div>
         </>
       ) : (
         <div>not connected</div>

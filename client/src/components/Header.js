@@ -12,10 +12,29 @@ const Header = () => {
   //   setOpenProfile(false);
   // }, []);
 
+  // add the new user :
+  // useEffect(() => {
+  //   if (user) {
+  //     fetch("/api/add-user", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({ user }),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((resData) => {
+  //         console.log(resData);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [user]);
+
   if (isLoading) {
     return <div>is loading..</div>;
   }
-
   return (
     <Container>
       <Input type="text" placeholder="Search"></Input>
