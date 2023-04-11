@@ -19,7 +19,7 @@ const SideBar = () => {
       <Div to="/">Movie Finder</Div>
       <Categories>
         <Genres>Genres</Genres>
-        <MenuLink>
+        <MenuLink to="/genre/actions">
           <FontAwesomeIcon icon={faFistRaised} />
           <p>Action</p>
         </MenuLink>

@@ -6,6 +6,7 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import Profile from "./Profile";
 import SignUp from "./SignUp";
+import Actions from "./genres/Actions";
 
 const App = () => {
   const excludedRoutes = ["/signup"];
@@ -20,6 +21,7 @@ const App = () => {
           {renderHeaderAndSidebar && <Header />}
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/genre/actions" element={<Actions />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>

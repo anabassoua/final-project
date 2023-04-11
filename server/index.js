@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const port = 8888;
 
 const { addUsers } = require("./handlers/addUsers");
+const { getActions } = require("./handlers/genres/getActions");
 const { getTrendingMovies } = require("./handlers/getTrendingMovies");
 
 express()
@@ -23,6 +24,7 @@ express()
   // ---------------------------------
   // add new endpoints here 👇
   .get("/trending", getTrendingMovies)
+  .get("/genre/actions", getActions)
   .post("/api/add-user", addUsers)
   // add new endpoints here ☝️
   // ---------------------------------
