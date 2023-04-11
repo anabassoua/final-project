@@ -35,7 +35,7 @@ const SideBar = () => {
           <FontAwesomeIcon icon={faTheaterMasks} />
           <p>Drama</p>
         </MenuLink>
-        <MenuLink>
+        <MenuLink to="/genre/horror">
           <FontAwesomeIcon icon={faGhost} />
           <p>Horror</p>
         </MenuLink>

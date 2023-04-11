@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Pagination from "../Pagination";
 
-const Actions = () => {
-  const [actions, setActions] = useState([]);
+const Horror = () => {
+  const [horror, setHorror] = useState([]);
   const [page, setPage] = useState(1);
   const totalPages = 20;
 
   useEffect(() => {
-    fetch(`/genre/actions?page=${page}`)
+    fetch(`/genre/horror?page=${page}`)
       .then((res) => res.json())
       .then((resData) => {
         console.log(resData);
-        setActions(resData.data.results);
+        setHorror(resData.data.results);
       })
       .catch((err) => {
         console.log(err);
@@ -21,12 +21,12 @@ const Actions = () => {
 
   return (
     <div>
-      {actions.map((action) => {
-        return <div key={action.id}>{action.title}</div>;
+      {horror.map((movie) => {
+        return <div key={movie.id}>{movie.title}</div>;
       })}
       <Pagination page={page} setPage={setPage} totalPages={totalPages} />
     </div>
   );
 };
 
-export default Actions;
+export default Horror;

@@ -8,6 +8,7 @@ const port = 8888;
 const { addUsers } = require("./handlers/addUsers");
 const { getActions } = require("./handlers/genres/getActions");
 const { getTrendingMovies } = require("./handlers/getTrendingMovies");
+const { getHorror } = require("./handlers/genres/getHorror");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -25,6 +26,7 @@ express()
   // add new endpoints here 👇
   .get("/trending", getTrendingMovies)
   .get("/genre/actions", getActions)
+  .get("/genre/horror", getHorror)
   .post("/api/add-user", addUsers)
   // add new endpoints here ☝️
   // ---------------------------------
