@@ -13,6 +13,7 @@ import Comedy from "./genres/Comedy";
 import Drama from "./genres/Drama";
 import Scifiction from "./genres/Scifiction";
 import Thriller from "./genres/Thriller";
+import Popular from "./genres/Popular";
 
 const App = () => {
   const excludedRoutes = ["/signup"];
@@ -34,6 +35,7 @@ const App = () => {
             <Route path="/genre/horror" element={<Horror />} />
             <Route path="/genre/scifiction" element={<Scifiction />} />
             <Route path="/genre/thriller" element={<Thriller />} />
+            <Route path="/popular" element={<Popular />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>

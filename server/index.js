@@ -11,8 +11,11 @@ const { getAdventure } = require("./handlers/genres/getAdventure");
 const { getComedy } = require("./handlers/genres/getComedy");
 const { getDrama } = require("./handlers/genres/getDrama");
 const { getHorror } = require("./handlers/genres/getHorror");
+const { getMoviebyId } = require("./handlers/getMoviebyId");
 const { getScifiction } = require("./handlers/genres/getScifiction");
 const { getThriller } = require("./handlers/genres/getThriller");
+const { getPopular } = require("./handlers/getPopular");
+const { getTopRatedMovies } = require("./handlers/getTopRatedMovies");
 const { getTrendingMovies } = require("./handlers/getTrendingMovies");
 
 express()
@@ -37,7 +40,10 @@ express()
   .get("/genre/horror", getHorror)
   .get("/genre/scifiction", getScifiction)
   .get("/genre/thriller", getThriller)
+  .get("/toprated", getTopRatedMovies)
+  .get("/popular", getPopular)
   .post("/api/add-user", addUsers)
+  .get("/movie/:id", getMoviebyId)
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line

@@ -51,7 +51,7 @@ const SideBar = () => {
           <TopRated>Top Rated</TopRated>
         </div>
         <div>
-          <Latest>Latest</Latest>
+          <Popular to="/popular">Popular</Popular>
         </div>
       </Categories>
     </BarContainer>
@@ -82,7 +82,7 @@ const TopRated = styled.div`
   padding-left: 15px;
   padding-top: 20px;
 `;
-const Latest = styled.div`
+const Popular = styled(Link)`
   font-style: italic;
   font-size: 1.4rem;
   padding-left: 15px;
