@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Pagination from "../Pagination";
 
-const Actions = () => {
-  const [actions, setActions] = useState([]);
+const Scifiction = () => {
+  const [scifi, setScifi] = useState([]);
   const [page, setPage] = useState(1);
   const totalPages = 20;
 
   useEffect(() => {
-    fetch(`/genre/action?page=${page}`)
+    fetch(`/genre/scifiction?page=${page}`)
       .then((res) => res.json())
       .then((resData) => {
         console.log(resData);
-        setActions(resData.data.results);
+        setScifi(resData.data.results);
       })
       .catch((err) => {
         console.log(err);
@@ -21,12 +21,12 @@ const Actions = () => {
 
   return (
     <div>
-      {actions.map((action) => {
-        return <div key={action.id}>{action.title}</div>;
+      {scifi.map((movie) => {
+        return <div key={movie.id}>{movie.title}</div>;
       })}
       <Pagination page={page} setPage={setPage} totalPages={totalPages} />
     </div>
   );
 };
 
-export default Actions;
+export default Scifiction;

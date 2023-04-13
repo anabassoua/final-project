@@ -19,19 +19,19 @@ const SideBar = () => {
       <Div to="/">Movie Finder</Div>
       <Categories>
         <Genres>Genres</Genres>
-        <MenuLink to="/genre/actions">
+        <MenuLink to="/genre/action">
           <FontAwesomeIcon icon={faFistRaised} />
           <p>Action</p>
         </MenuLink>
-        <MenuLink>
+        <MenuLink to="/genre/adventure">
           <FontAwesomeIcon icon={faCompass} />
-          <p>Aventure</p>
+          <p>Adventure</p>
         </MenuLink>
-        <MenuLink>
+        <MenuLink to="/genre/comedy">
           <FontAwesomeIcon icon={faGrinSquintTears} />
           <p>Comedy</p>
         </MenuLink>
-        <MenuLink>
+        <MenuLink to="/genre/drama">
           <FontAwesomeIcon icon={faTheaterMasks} />
           <p>Drama</p>
         </MenuLink>
@@ -39,11 +39,11 @@ const SideBar = () => {
           <FontAwesomeIcon icon={faGhost} />
           <p>Horror</p>
         </MenuLink>
-        <MenuLink>
+        <MenuLink to="/genre/scifiction">
           <FontAwesomeIcon icon={faRocket} />
           <p>Science Fiction</p>
         </MenuLink>
-        <MenuLink>
+        <MenuLink to="/genre/thriller">
           <FontAwesomeIcon icon={faMask} />
           <p>Thriller</p>
         </MenuLink>

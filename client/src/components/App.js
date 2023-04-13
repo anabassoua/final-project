@@ -8,6 +8,11 @@ import Profile from "./Profile";
 import SignUp from "./SignUp";
 import Actions from "./genres/Actions";
 import Horror from "./genres/Horror";
+import Adventure from "./genres/Adventure";
+import Comedy from "./genres/Comedy";
+import Drama from "./genres/Drama";
+import Scifiction from "./genres/Scifiction";
+import Thriller from "./genres/Thriller";
 
 const App = () => {
   const excludedRoutes = ["/signup"];
@@ -22,8 +27,13 @@ const App = () => {
           {renderHeaderAndSidebar && <Header />}
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/genre/actions" element={<Actions />} />
+            <Route path="/genre/action" element={<Actions />} />
+            <Route path="/genre/adventure" element={<Adventure />} />
+            <Route path="/genre/comedy" element={<Comedy />} />
+            <Route path="/genre/drama" element={<Drama />} />
             <Route path="/genre/horror" element={<Horror />} />
+            <Route path="/genre/scifiction" element={<Scifiction />} />
+            <Route path="/genre/thriller" element={<Thriller />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
