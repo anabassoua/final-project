@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const port = 8888;
 
 const { addUsers } = require("./handlers/addUsers");
+const { deleteUser } = require("./handlers/deleteUser");
 const { getActions } = require("./handlers/genres/getActions");
 const { getAdventure } = require("./handlers/genres/getAdventure");
 const { getComedy } = require("./handlers/genres/getComedy");
@@ -43,6 +44,7 @@ express()
   .get("/toprated", getTopRatedMovies)
   .get("/popular", getPopular)
   .post("/api/add-user", addUsers)
+  .delete("/api/delete-user/:id", deleteUser)
   .get("/movie/:id", getMoviebyId)
   // add new endpoints here ☝️
   // ---------------------------------
