@@ -18,6 +18,7 @@ const { getThriller } = require("./handlers/genres/getThriller");
 const { getPopular } = require("./handlers/getPopular");
 const { getTopRatedMovies } = require("./handlers/getTopRatedMovies");
 const { getTrendingMovies } = require("./handlers/getTrendingMovies");
+const { getSearch } = require("./handlers/getSearch");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -43,6 +44,7 @@ express()
   .get("/genre/thriller", getThriller)
   .get("/toprated", getTopRatedMovies)
   .get("/popular", getPopular)
+  .get("/api/search", getSearch)
   .post("/api/add-user", addUsers)
   .delete("/api/delete-user/:id", deleteUser)
   .get("/movie/:id", getMoviebyId)
