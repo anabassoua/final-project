@@ -1,7 +1,22 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
-  return <Input type="text" placeholder="Search"></Input>;
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      console.log("worked!");
+      const query = e.target.value;
+      if (query) {
+        navigate(`/results?query=${query}`);
+      }
+    }
+  };
+
+  return (
+    <Input type="text" placeholder="Search" onKeyDown={handleSearch}></Input>
+  );
 };
 
 const Input = styled.input`
