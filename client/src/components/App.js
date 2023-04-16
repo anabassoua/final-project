@@ -29,7 +29,7 @@ const App = () => {
           {renderHeaderAndSidebar && <Header />}
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/results" element={<SearchResults />} />
+            <Route path="/results/:query" element={<SearchResults />} />
             <Route path="/genre/action" element={<Actions />} />
             <Route path="/genre/adventure" element={<Adventure />} />
             <Route path="/genre/comedy" element={<Comedy />} />

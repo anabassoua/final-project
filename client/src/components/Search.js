@@ -9,7 +9,8 @@ const Search = () => {
       console.log("worked!!");
       const query = e.target.value.trim();
       if (query) {
-        navigate(`/results?query=${query}`);
+        navigate(`/results/${query}`);
+        e.target.value = "";
       }
     }
   };
