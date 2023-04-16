@@ -23,6 +23,10 @@ const SearchResults = () => {
       });
   }, [query, page]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [query]);
+
   return (
     <div>
       {movies &&
