@@ -6,7 +6,7 @@ const Search = () => {
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
-      console.log("worked!");
+      console.log("worked!!");
       const query = e.target.value;
       if (query) {
         navigate(`/results?query=${query}`);
