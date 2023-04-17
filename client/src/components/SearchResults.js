@@ -15,7 +15,7 @@ const SearchResults = () => {
       .then((resData) => {
         console.log(resData);
         setMovies(resData.data.results);
-        //Sometimes we have more than 20 pages and i only want to display a maximum of 20 pages, so i set a max of 20 and a min of the total pages available.
+        //Sometimes we have more than 20 pages and i only want to display a max of 20, so i set a max of 20 and a min of the total pages available.
         setTotalPages(Math.min(resData.data.total_pages, 20));
       })
       .catch((error) => {
