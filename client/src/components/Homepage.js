@@ -67,7 +67,6 @@ const CarouselContainer = styled.div`
 const CarouselItem = styled.div`
   flex-shrink: 0;
   margin-right: 10;
-  /* border: 1px solid green; */
   height: 450px;
   background-color: var(--richblack-bg);
   border-radius: 10px;

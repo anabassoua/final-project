@@ -85,6 +85,13 @@ const RatingContainer = styled.div`
 
 const ItemsContainer = styled.div``;
 
-const Card = styled.div``;
+const Card = styled.div`
+  flex-shrink: 0;
+  margin-right: 10;
+  height: 450px;
+  background-color: var(--richblack-bg);
+  border-radius: 10px;
+  max-width: 252px;
+`;
 
 export default Actions;
