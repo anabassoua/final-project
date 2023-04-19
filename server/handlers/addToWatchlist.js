@@ -14,12 +14,23 @@ const AddToWatchlist = async (req, res) => {
   try {
     await client.connect();
     const db = await client.db("final-project");
+
+    //Check if the movie already exists in the db:
+    const movieExists = await db
+      .collection("watchlist")
+      .findOne({ userId, "movie.id": movie.id });
+
+    if (movieExists) {
+      return res.status(200).json({ status: 200, message: "Already exists!" });
+    }
     const result = await db
       .collection("watchlist")
       .insertOne({ userId, movie });
 
     if (!result) {
-      res.status(500).json({ status: 500, message: "Failed to add movie!" });
+      return res
+        .status(500)
+        .json({ status: 500, message: "Failed to add movie!" });
     }
     return res
       .status(200)
@@ -27,6 +38,7 @@ const AddToWatchlist = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+  client.close();
 };
 
 module.exports = { AddToWatchlist };

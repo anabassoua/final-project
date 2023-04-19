@@ -12,12 +12,19 @@ const Actions = () => {
   const totalPages = 20;
 
   const addToWatchlist = (movie) => {
+    //We dont want to return all the informations from the API but just the following:
+    const addThis = {
+      id: movie.id,
+      title: movie.title,
+      poster_path: movie.poster_path,
+      vote_average: movie.vote_average,
+    };
     fetch("/api/add-to-watchlist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userId: user.email, movie: movie }),
+      body: JSON.stringify({ userId: user.email, movie: addThis }),
     })
       .then((res) => res.json())
       .then((resData) => {
