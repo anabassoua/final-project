@@ -4,7 +4,7 @@ import avatar from "../assets/avatar_icon.png";
 import DropDownProfile from "./DropDownProfile";
 import { useAuth0 } from "@auth0/auth0-react";
 import Search from "./Search";
-
+import { Link } from "react-router-dom";
 const Header = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -22,11 +22,14 @@ const Header = () => {
       <ProfileDiv>
         {openProfile && <DropDownProfile />}
         {isAuthenticated ? (
-          <Img
-            src={user.picture}
-            alt="picture"
-            onClick={() => setOpenProfile((openProfile) => !openProfile)}
-          />
+          <Div>
+            <Watchlist to="/watchlist">My Watchlist</Watchlist>
+            <Img
+              src={user.picture}
+              alt="picture"
+              onClick={() => setOpenProfile((openProfile) => !openProfile)}
+            />
+          </Div>
         ) : (
           <Img
             src={avatar}
@@ -58,5 +61,16 @@ const Img = styled.img`
 
 const ProfileDiv = styled.div`
   display: flex;
+`;
+
+const Div = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 70px;
+`;
+
+const Watchlist = styled(Link)`
+  text-decoration: none;
+  color: yellow;
 `;
 export default Header;

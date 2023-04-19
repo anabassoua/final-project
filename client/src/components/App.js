@@ -15,6 +15,7 @@ import Scifiction from "./genres/Scifiction";
 import Thriller from "./genres/Thriller";
 import Popular from "./genres/Popular";
 import SearchResults from "./SearchResults";
+import Watchlist from "./Watchlist";
 
 const App = () => {
   const excludedRoutes = ["/signup"];
@@ -29,6 +30,7 @@ const App = () => {
           {renderHeaderAndSidebar && <Header />}
           <Routes>
             <Route path="/" element={<Homepage />} />
+            <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/results/:query" element={<SearchResults />} />
             <Route path="/genre/action" element={<Actions />} />
             <Route path="/genre/adventure" element={<Adventure />} />

@@ -1,13 +1,32 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import Pagination from "../Pagination";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
 
 const Actions = () => {
+  const { user } = useAuth0();
   const [actions, setActions] = useState([]);
   const [page, setPage] = useState(1);
   const totalPages = 20;
+
+  const addToWatchlist = (movie) => {
+    fetch("/api/add-to-watchlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId: user.email, movie: movie }),
+    })
+      .then((res) => res.json())
+      .then((resData) => {
+        console.log(resData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     fetch(`/genre/action?page=${page}`)
@@ -28,7 +47,7 @@ const Actions = () => {
         <Container>
           {actions.map((action) => {
             return (
-              <ItemsContainer>
+              <ItemsContainer key={action.id}>
                 <Card key={action.id}>
                   <Img
                     src={`https://image.tmdb.org/t/p/w500${action.poster_path}`}
@@ -39,6 +58,9 @@ const Actions = () => {
                     <Icon icon={star} style={{ color: "var(--mint)" }} />
                     <p> {action.vote_average}</p>
                   </RatingContainer>
+                  <button onClick={() => addToWatchlist(action)}>
+                    AddToWatchlist
+                  </button>
                 </Card>
               </ItemsContainer>
             );

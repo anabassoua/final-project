@@ -19,6 +19,7 @@ const { getPopular } = require("./handlers/getPopular");
 const { getTopRatedMovies } = require("./handlers/getTopRatedMovies");
 const { getTrendingMovies } = require("./handlers/getTrendingMovies");
 const { getSearch } = require("./handlers/getSearch");
+const { AddToWatchlist } = require("./handlers/addToWatchlist");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -46,6 +47,7 @@ express()
   .get("/popular", getPopular)
   .get("/api/search", getSearch)
   .post("/api/add-user", addUsers)
+  .post("/api/add-to-watchlist", AddToWatchlist)
   .delete("/api/delete-user/:id", deleteUser)
   .get("/movie/:id", getMoviebyId)
   // add new endpoints here ☝️
