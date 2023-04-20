@@ -6,7 +6,7 @@ import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
 
 const Actions = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [actions, setActions] = useState([]);
   const [page, setPage] = useState(1);
   const totalPages = 20;
@@ -24,7 +24,7 @@ const Actions = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userId: user.email, movie: addThis }),
+      body: JSON.stringify({ userId: user?.email, movie: addThis }),
     })
       .then((res) => res.json())
       .then((resData) => {
@@ -65,9 +65,11 @@ const Actions = () => {
                     <Icon icon={star} style={{ color: "var(--mint)" }} />
                     <p> {action.vote_average}</p>
                   </RatingContainer>
-                  <button onClick={() => addToWatchlist(action)}>
-                    AddToWatchlist
-                  </button>
+                  {isAuthenticated ? (
+                    <button onClick={() => addToWatchlist(action)}>
+                      AddToWatchlist
+                    </button>
+                  ) : null}
                 </Card>
               </ItemsContainer>
             );
