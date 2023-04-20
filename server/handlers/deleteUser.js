@@ -16,6 +16,7 @@ const deleteUser = async (req, res) => {
   const result = await db
     .collection("users")
     .deleteOne({ _id: new ObjectId(id) });
+
   if (result.deletedCount > 0) {
     res.status(200).json({ status: 200, message: "User deleted successfully" });
   } else {
