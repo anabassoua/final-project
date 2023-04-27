@@ -8,14 +8,12 @@ const options = {
 };
 
 const deleteUser = async (req, res) => {
-  const { id } = req.params;
+  const { email } = req.params;
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
 
   const db = client.db("final-project");
-  const result = await db
-    .collection("users")
-    .deleteOne({ _id: new ObjectId(id) });
+  const result = await db.collection("users").deleteOne({ email: email });
 
   if (result.deletedCount > 0) {
     res.status(200).json({ status: 200, message: "User deleted successfully" });

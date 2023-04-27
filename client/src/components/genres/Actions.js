@@ -4,12 +4,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Pagination from "../Pagination";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
+import { ic_bookmark_border } from "react-icons-kit/md/ic_bookmark_border";
 
 const Actions = () => {
   const { user, isAuthenticated } = useAuth0();
   const [actions, setActions] = useState([]);
   const [page, setPage] = useState(1);
   const totalPages = 20;
+
+  // we need to toggle the button. if i add to watchlist its filled in yellow and if i click again its
+  // going back normal which means the movie is also removed from the watchlist
 
   const addToWatchlist = (movie) => {
     //We dont want to return all the informations from the API but just the following:
@@ -66,9 +70,9 @@ const Actions = () => {
                     <p> {action.vote_average}</p>
                   </RatingContainer>
                   {isAuthenticated ? (
-                    <button onClick={() => addToWatchlist(action)}>
-                      AddToWatchlist
-                    </button>
+                    <Button onClick={() => addToWatchlist(action)}>
+                      <Icon icon={ic_bookmark_border} size={30} />
+                    </Button>
                   ) : null}
                 </Card>
               </ItemsContainer>
@@ -123,6 +127,17 @@ const Card = styled.div`
   background-color: var(--richblack-bg);
   border-radius: 10px;
   max-width: 252px;
+  position: relative;
+`;
+
+const Button = styled.button`
+  position: absolute;
+  left: 40%;
+  bottom: 2%;
+  background: none;
+  border: none;
+  color: yellow;
+  cursor: pointer;
 `;
 
 export default Actions;

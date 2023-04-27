@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 import JSONPretty from "react-json-pretty";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
 
@@ -28,10 +29,12 @@ const HomePage = () => {
       <CarouselContainer>
         {trending.map((movie) => (
           <CarouselItem key={movie.id}>
-            <Img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
+            <Link to={`movie/${movie.id}`}>
+              <Img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+            </Link>
             <Title>{movie.title}</Title>
             <RatingContainer>
               <Icon icon={star} style={{ color: "var(--mint)" }} />

@@ -22,6 +22,28 @@ const Watchlist = () => {
     }
   }, [user]);
 
+  const handleDeleteMovie = (movieId) => {
+    fetch(
+      `/api/delete-from-watchlist?userId=${user.email}&movieId=${movieId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ movieId }),
+      }
+    )
+      .then((res) => res.json())
+      .then((resData) => {
+        console.log(resData);
+        //Without the line below we would be forced to refresh the page to see the movie removed.
+        setWatchlist(watchlist.filter((movie) => movie.movie.id !== movieId));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -43,6 +65,9 @@ const Watchlist = () => {
                     <Icon icon={star} style={{ color: "var(--mint)" }} />
                     <p> {movie.movie.vote_average}</p>
                   </RatingContainer>
+                  <Button onClick={() => handleDeleteMovie(movie.movie.id)}>
+                    X
+                  </Button>
                 </Card>
               </ItemsContainer>
             );
@@ -95,6 +120,16 @@ const Card = styled.div`
   background-color: var(--richblack-bg);
   border-radius: 10px;
   max-width: 252px;
+  position: relative;
 `;
 
+const Button = styled.button`
+  position: absolute;
+  background: none;
+  border: none;
+  color: red;
+  top: -10px;
+  right: -20px;
+  cursor: pointer;
+`;
 export default Watchlist;
