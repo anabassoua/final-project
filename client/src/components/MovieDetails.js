@@ -26,6 +26,11 @@ const MovieDetails = () => {
         alt={movie.title}
       />
       <MovieInfo>
+        <p>{movie.title}</p>
+        <p>{movie.release_date}</p>
+        <a href={movie.homepage} target="_blank" rel="noopener noreferrer">
+          {movie.homepage}
+        </a>
         <Synopsis>{movie.overview}</Synopsis>
         {/* Add other movie information elements here */}
       </MovieInfo>

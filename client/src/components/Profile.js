@@ -9,7 +9,23 @@ const Profile = () => {
   }
 
   //handle deleting user:
-  const handleDeleteUser = () => {};
+  const handleDeleteUser = () => {
+    fetch(`/api/delete-user/${user.email}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: user.email }),
+    })
+      .then((res) => res.json())
+      .then((resData) => {
+        console.log(resData);
+        logout();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Container>
@@ -18,7 +34,7 @@ const Profile = () => {
           <Div>{user.nickname}</Div>
           <Div>2</Div>
           <Div>
-            <button>DELETE</button>
+            <button onClick={handleDeleteUser}>DELETE</button>
           </Div>
         </>
       ) : (
