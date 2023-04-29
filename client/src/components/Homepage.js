@@ -5,18 +5,20 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
+import Spinner from "./Spinner";
+import { spinner8 } from "react-icons-kit/icomoon/spinner8";
 
 const HomePage = () => {
-  // const { user } = useAuth0();
-  // return <JSONPretty data={user} />;
   const [trending, setTrending] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch("/trending")
       .then((res) => res.json())
       .then((resData) => {
-        console.log(resData.data.results);
         setTrending(resData.data.results);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -27,21 +29,29 @@ const HomePage = () => {
     <div>
       <Heading>Trending Movies</Heading>
       <CarouselContainer>
-        {trending.map((movie) => (
-          <CarouselItem key={movie.id}>
-            <Link to={`movie/${movie.id}`}>
-              <Img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
-            </Link>
-            <Title>{movie.title}</Title>
-            <RatingContainer>
-              <Icon icon={star} style={{ color: "var(--mint)" }} />
-              <p> {movie.vote_average}</p>
-            </RatingContainer>
-          </CarouselItem>
-        ))}
+        {loading ? (
+          <SpinnerContainer>
+            <Spinner icon={spinner8} size={70} />
+          </SpinnerContainer>
+        ) : (
+          <>
+            {trending.map((movie) => (
+              <CarouselItem key={movie.id}>
+                <Link to={`movie/${movie.id}`}>
+                  <Img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                </Link>
+                <Title>{movie.title}</Title>
+                <RatingContainer>
+                  <Icon icon={star} style={{ color: "var(--mint)" }} />
+                  <p> {movie.vote_average}</p>
+                </RatingContainer>
+              </CarouselItem>
+            ))}
+          </>
+        )}
       </CarouselContainer>
     </div>
   );
@@ -92,6 +102,13 @@ const RatingContainer = styled.div`
   gap: 5px;
   padding-left: 15px;
   padding-top: 5px;
+`;
+
+const SpinnerContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export default HomePage;
