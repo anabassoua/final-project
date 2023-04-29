@@ -21,16 +21,20 @@ const MovieDetails = () => {
 
   return (
     <Container>
-      <Img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-      />
+      {movie.poster_path && (
+        <Img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+        />
+      )}
       <MovieInfo>
         <p>{movie.title}</p>
         <p>{movie.release_date}</p>
-        <a href={movie.homepage} target="_blank" rel="noopener noreferrer">
-          {movie.homepage}
-        </a>
+        {movie.homepage && (
+          <a href={movie.homepage} target="_blank" rel="noopener noreferrer">
+            {movie.homepage}
+          </a>
+        )}
         <Synopsis>{movie.overview}</Synopsis>
         {/* Add other movie information elements here */}
       </MovieInfo>
