@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Pagination from "../Pagination";
+import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
 
@@ -28,12 +29,14 @@ const Popular = () => {
         <Container>
           {popular.map((movie) => {
             return (
-              <ItemsContainer>
-                <Card key={movie.id}>
-                  <Img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  />
+              <ItemsContainer key={movie.id}>
+                <Card>
+                  <Link to={`/movie/${movie.id}`}>
+                    <Img
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      alt={movie.title}
+                    />
+                  </Link>
                   <Title>{movie.title}</Title>
                   <RatingContainer>
                     <Icon icon={star} style={{ color: "var(--mint)" }} />

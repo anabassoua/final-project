@@ -9,6 +9,7 @@ import {
   faGhost,
   faRocket,
   faMask,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Link } from "react-router-dom";
@@ -20,39 +21,49 @@ const SideBar = () => {
       <Categories>
         <Genres>Genres</Genres>
         <MenuLink to="/genre/action">
-          <FontAwesomeIcon icon={faFistRaised} />
+          <FontAwesomeIcon
+            icon={faFistRaised}
+            style={{ color: "var(--mint)" }}
+          />
           <p>Action</p>
         </MenuLink>
         <MenuLink to="/genre/adventure">
-          <FontAwesomeIcon icon={faCompass} />
+          <FontAwesomeIcon icon={faCompass} style={{ color: "var(--mint)" }} />
           <p>Adventure</p>
         </MenuLink>
         <MenuLink to="/genre/comedy">
-          <FontAwesomeIcon icon={faGrinSquintTears} />
+          <FontAwesomeIcon
+            icon={faGrinSquintTears}
+            style={{ color: "var(--mint)" }}
+          />
           <p>Comedy</p>
         </MenuLink>
         <MenuLink to="/genre/drama">
-          <FontAwesomeIcon icon={faTheaterMasks} />
+          <FontAwesomeIcon
+            icon={faTheaterMasks}
+            style={{ color: "var(--mint)" }}
+          />
           <p>Drama</p>
         </MenuLink>
         <MenuLink to="/genre/horror">
-          <FontAwesomeIcon icon={faGhost} />
+          <FontAwesomeIcon icon={faGhost} style={{ color: "var(--mint)" }} />
           <p>Horror</p>
         </MenuLink>
         <MenuLink to="/genre/scifiction">
-          <FontAwesomeIcon icon={faRocket} />
+          <FontAwesomeIcon icon={faRocket} style={{ color: "var(--mint)" }} />
           <p>Science Fiction</p>
         </MenuLink>
         <MenuLink to="/genre/thriller">
-          <FontAwesomeIcon icon={faMask} />
+          <FontAwesomeIcon icon={faMask} style={{ color: "var(--mint)" }} />
           <p>Thriller</p>
         </MenuLink>
-        <div>
+        {/* <div>
           <TopRated>Top Rated</TopRated>
-        </div>
-        <div>
-          <Popular to="/popular">Popular</Popular>
-        </div>
+        </div> */}
+        <PopDiv to="/popular">
+          <FontAwesomeIcon icon={faStar} style={{ color: "var(--mint)" }} />
+          <p>Popular</p>
+        </PopDiv>
       </Categories>
     </BarContainer>
   );
@@ -71,24 +82,30 @@ const BarContainer = styled.div`
 
 const Genres = styled.div`
   font-style: italic;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding-left: 15px;
-  color: var(--mint);
+  /* color: var(--mint); */
+  color: #fff;
 `;
 
-const TopRated = styled.div`
-  font-style: italic;
+const PopDiv = styled(Link)`
+  display: flex;
+  gap: 15px;
   font-size: 1.4rem;
   padding-left: 15px;
-  padding-top: 20px;
+  padding-top: 30px;
+  text-decoration: none;
+  color: inherit;
+  margin-top: 38px;
 `;
-const Popular = styled(Link)`
-  font-style: italic;
-  font-size: 1.4rem;
-  padding-left: 15px;
-  padding-top: 15px;
-  padding-bottom: 20px;
-`;
+// const Popular = styled(Link)`
+//   font-style: italic;
+//   font-size: 1.4rem;
+//   padding-left: 15px;
+//   padding-bottom: 20px;
+//   text-decoration: none;
+//   color: gray;
+// `;
 
 const Div = styled(Link)`
   font-family: var(--font-logo);
@@ -109,6 +126,7 @@ const Categories = styled.div`
 
 const MenuLink = styled(Link)`
   display: flex;
+  gap: 15px;
   text-decoration: none;
   color: #fff;
   padding: 12px 35px;

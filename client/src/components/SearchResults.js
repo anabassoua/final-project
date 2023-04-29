@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Pagination from "./Pagination";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
@@ -38,15 +39,17 @@ const SearchResults = () => {
           {movies?.map((movie) => {
             return (
               <ItemsContainer key={movie.id}>
-                <Card key={movie.id}>
-                  {movie.poster_path ? (
-                    <Img
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      alt={movie.title}
-                    />
-                  ) : (
-                    <Img src="/poster_not_found.png" alt="Poster Not Found" />
-                  )}
+                <Card>
+                  <Link to={`/movie/${movie.id}`}>
+                    {movie.poster_path ? (
+                      <Img
+                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        alt={movie.title}
+                      />
+                    ) : (
+                      <Img src="/poster_not_found.png" alt="Poster Not Found" />
+                    )}
+                  </Link>
                   <Title>{movie.title}</Title>
                   <RatingContainer>
                     <Icon icon={star} style={{ color: "var(--mint)" }} />

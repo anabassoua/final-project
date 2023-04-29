@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Pagination from "../Pagination";
 import { Icon } from "react-icons-kit";
@@ -59,11 +60,13 @@ const Actions = () => {
           {actions.map((action) => {
             return (
               <ItemsContainer key={action.id}>
-                <Card key={action.id}>
-                  <Img
-                    src={`https://image.tmdb.org/t/p/w500${action.poster_path}`}
-                    alt={action.title}
-                  />
+                <Card>
+                  <Link to={`/movie/${action.id}`}>
+                    <Img
+                      src={`https://image.tmdb.org/t/p/w500${action.poster_path}`}
+                      alt={action.title}
+                    />
+                  </Link>
                   <Title>{action.title}</Title>
                   <RatingContainer>
                     <Icon icon={star} style={{ color: "var(--mint)" }} />
