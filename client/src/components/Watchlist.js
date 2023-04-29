@@ -3,18 +3,22 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
+import Spinner from "./Spinner";
+import { spinner8 } from "react-icons-kit/icomoon/spinner8";
 
 const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
-  const { user, isLoading } = useAuth0();
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth0();
 
   useEffect(() => {
+    setLoading(true);
     if (user) {
       fetch(`/api/watchlist?userId=${user.email}`)
         .then((res) => res.json())
         .then((resData) => {
-          console.log(resData.data);
           setWatchlist(resData.data);
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -35,7 +39,7 @@ const Watchlist = () => {
     )
       .then((res) => res.json())
       .then((resData) => {
-        console.log(resData);
+        // console.log(resData);
         //Without the line below we would be forced to refresh the page to see the movie removed.
         setWatchlist(watchlist.filter((movie) => movie.movie.id !== movieId));
       })
@@ -44,37 +48,49 @@ const Watchlist = () => {
       });
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return (
+  //     <SpinnerContainer>
+  //       <Spinner icon={spinner8} size={70} />
+  //     </SpinnerContainer>
+  //   );
+  // }
   return (
-    <>
-      <Heading>Watchlist</Heading>
-      <Div>
-        <Container>
-          {watchlist.map((movie) => {
-            return (
-              <ItemsContainer key={movie.movie.id}>
-                <Card>
-                  <Img
-                    src={`https://image.tmdb.org/t/p/w500${movie.movie.poster_path}`}
-                    alt={movie.movie.title}
-                  />
-                  <Title>{movie.movie.title}</Title>
-                  <RatingContainer>
-                    <Icon icon={star} style={{ color: "var(--mint)" }} />
-                    <p> {movie.movie.vote_average}</p>
-                  </RatingContainer>
-                  <Button onClick={() => handleDeleteMovie(movie.movie.id)}>
-                    X
-                  </Button>
-                </Card>
-              </ItemsContainer>
-            );
-          })}
-        </Container>
-      </Div>
-    </>
+    <div>
+      {loading ? (
+        <SpinnerContainer>
+          <Spinner icon={spinner8} size={70} />
+        </SpinnerContainer>
+      ) : (
+        <>
+          <Heading>Watchlist</Heading>
+          <Div>
+            <Container>
+              {watchlist.map((movie) => {
+                return (
+                  <ItemsContainer key={movie.movie.id}>
+                    <Card>
+                      <Img
+                        src={`https://image.tmdb.org/t/p/w500${movie.movie.poster_path}`}
+                        alt={movie.movie.title}
+                      />
+                      <Title>{movie.movie.title}</Title>
+                      <RatingContainer>
+                        <Icon icon={star} style={{ color: "var(--mint)" }} />
+                        <p> {movie.movie.vote_average}</p>
+                      </RatingContainer>
+                      <Button onClick={() => handleDeleteMovie(movie.movie.id)}>
+                        X
+                      </Button>
+                    </Card>
+                  </ItemsContainer>
+                );
+              })}
+            </Container>
+          </Div>
+        </>
+      )}
+    </div>
   );
 };
 
@@ -132,4 +148,12 @@ const Button = styled.button`
   right: -20px;
   cursor: pointer;
 `;
+
+const SpinnerContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export default Watchlist;

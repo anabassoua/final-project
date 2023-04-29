@@ -6,10 +6,13 @@ import Pagination from "../Pagination";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
 import { ic_bookmark_border } from "react-icons-kit/md/ic_bookmark_border";
+import Spinner from "../Spinner";
+import { spinner8 } from "react-icons-kit/icomoon/spinner8";
 
 const Actions = () => {
   const { user, isAuthenticated } = useAuth0();
   const [actions, setActions] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const totalPages = 20;
 
@@ -41,11 +44,12 @@ const Actions = () => {
   };
 
   useEffect(() => {
+    setLoading(true);
     fetch(`/genre/action?page=${page}`)
       .then((res) => res.json())
       .then((resData) => {
-        console.log(resData);
         setActions(resData.data.results);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -53,38 +57,46 @@ const Actions = () => {
   }, [page]);
 
   return (
-    <>
-      <Heading>Action Movies</Heading>
-      <Div>
-        <Container>
-          {actions.map((action) => {
-            return (
-              <ItemsContainer key={action.id}>
-                <Card>
-                  <Link to={`/movie/${action.id}`}>
-                    <Img
-                      src={`https://image.tmdb.org/t/p/w500${action.poster_path}`}
-                      alt={action.title}
-                    />
-                  </Link>
-                  <Title>{action.title}</Title>
-                  <RatingContainer>
-                    <Icon icon={star} style={{ color: "var(--mint)" }} />
-                    <p> {action.vote_average}</p>
-                  </RatingContainer>
-                  {isAuthenticated ? (
-                    <Button onClick={() => addToWatchlist(action)}>
-                      <Icon icon={ic_bookmark_border} size={30} />
-                    </Button>
-                  ) : null}
-                </Card>
-              </ItemsContainer>
-            );
-          })}
-        </Container>
-      </Div>
-      <Pagination page={page} setPage={setPage} totalPages={totalPages} />
-    </>
+    <div>
+      {loading ? (
+        <SpinnerContainer>
+          <Spinner icon={spinner8} size={70} />
+        </SpinnerContainer>
+      ) : (
+        <>
+          <Heading>Action Movies</Heading>
+          <Div>
+            <Container>
+              {actions.map((action) => {
+                return (
+                  <ItemsContainer key={action.id}>
+                    <Card>
+                      <Link to={`/movie/${action.id}`}>
+                        <Img
+                          src={`https://image.tmdb.org/t/p/w500${action.poster_path}`}
+                          alt={action.title}
+                        />
+                      </Link>
+                      <Title>{action.title}</Title>
+                      <RatingContainer>
+                        <Icon icon={star} style={{ color: "var(--mint)" }} />
+                        <p> {action.vote_average}</p>
+                      </RatingContainer>
+                      {isAuthenticated ? (
+                        <Button onClick={() => addToWatchlist(action)}>
+                          <Icon icon={ic_bookmark_border} size={30} />
+                        </Button>
+                      ) : null}
+                    </Card>
+                  </ItemsContainer>
+                );
+              })}
+            </Container>
+          </Div>
+          <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+        </>
+      )}
+    </div>
   );
 };
 
@@ -141,6 +153,13 @@ const Button = styled.button`
   border: none;
   color: yellow;
   cursor: pointer;
+`;
+
+const SpinnerContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export default Actions;

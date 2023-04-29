@@ -5,17 +5,22 @@ import DropDownProfile from "./DropDownProfile";
 import { useAuth0 } from "@auth0/auth0-react";
 import Search from "./Search";
 import { Link } from "react-router-dom";
+import { Icon } from "react-icons-kit";
+import Spinner from "./Spinner";
+import { spinner8 } from "react-icons-kit/icomoon/spinner8";
+
 const Header = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  // useEffect(() => {
-  //   setOpenProfile(false);
-  // }, []);
-
   if (isLoading) {
-    return <div>is loading..</div>;
+    return (
+      <SpinnerContainer>
+        <Spinner icon={spinner8} size={70} />
+      </SpinnerContainer>
+    );
   }
+
   return (
     <Container>
       <Search />
@@ -73,4 +78,12 @@ const Watchlist = styled(Link)`
   text-decoration: none;
   color: yellow;
 `;
+
+const SpinnerContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export default Header;

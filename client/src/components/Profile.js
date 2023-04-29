@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Icon } from "react-icons-kit";
+import Spinner from "./Spinner";
+import { spinner8 } from "react-icons-kit/icomoon/spinner8";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading, logout } = useAuth0();
 
   if (isLoading) {
-    return <div>is loading..</div>;
+    return (
+      <SpinnerContainer>
+        <Spinner icon={spinner8} size={70} />
+      </SpinnerContainer>
+    );
   }
 
   //handle deleting user:
@@ -64,4 +71,12 @@ const Div = styled.div`
   background-color: var(--richblack-bg);
   color: #fff;
 `;
+
+const SpinnerContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export default Profile;

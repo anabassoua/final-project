@@ -27,14 +27,14 @@ const HomePage = () => {
 
   return (
     <div>
-      <Heading>Trending Movies</Heading>
-      <CarouselContainer>
-        {loading ? (
-          <SpinnerContainer>
-            <Spinner icon={spinner8} size={70} />
-          </SpinnerContainer>
-        ) : (
-          <>
+      {loading ? (
+        <SpinnerContainer>
+          <Spinner icon={spinner8} size={70} />
+        </SpinnerContainer>
+      ) : (
+        <>
+          <Heading>Trending Movies</Heading>
+          <CarouselContainer>
             {trending.map((movie) => (
               <CarouselItem key={movie.id}>
                 <Link to={`movie/${movie.id}`}>
@@ -50,9 +50,9 @@ const HomePage = () => {
                 </RatingContainer>
               </CarouselItem>
             ))}
-          </>
-        )}
-      </CarouselContainer>
+          </CarouselContainer>
+        </>
+      )}
     </div>
   );
 };
