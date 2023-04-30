@@ -2,34 +2,53 @@ import styled from "styled-components";
 import SigninButton from "./SigninButton";
 import SignoutButton from "./SignoutButton";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Icon } from "react-icons-kit";
+import { person } from "react-icons-kit/oct/person";
+import { userAdd } from "react-icons-kit/typicons/userAdd";
 
 const DropDownProfile = () => {
+  const { user, loginWithRedirect } = useAuth0();
   return (
-    <Div>
-      <div>{<SigninButton />}</div>
-      <div>Sign up</div>
-      <div>{<SignoutButton />}</div>
-      <Li to="/profile">Profile</Li>
-    </Div>
+    <Container>
+      <SigninButton />
+      {!user ? (
+        <Button onClick={() => loginWithRedirect()}>
+          <Icon icon={userAdd} />
+          <p>Sign up</p>
+        </Button>
+      ) : null}
+
+      <SignoutButton />
+      <Button>
+        <Icon icon={person} />
+        <Li to="/profile">Profile</Li>
+      </Button>
+    </Container>
   );
 };
 
-const Div = styled.div`
+const Container = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   position: absolute;
-  top: 5rem;
+  top: 6.2rem;
   right: 0.5rem;
-  border-radius: 10px;
-  background-color: #fff;
-  border: 1px solid gray;
+  /* border-radius: 10px; */
+  background-color: var(--richblack-bg);
+  border: 1px solid var(--oxfordblue-bg);
   width: 100px;
-  height: 100px;
+  height: auto;
   color: gray;
-  padding: 15px;
+  padding: 5px;
   line-height: 1.5rem;
   z-index: 1000;
 
   &::before {
-    content: "";
+    /* content: ""; */
     position: absolute;
     top: -0.4rem;
     right: 2rem;
@@ -39,6 +58,29 @@ const Div = styled.div`
     background-color: #fff;
   }
 `;
+const Button = styled.button`
+  display: flex;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: #fff;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: #fff;
+    color: var(--oxfordblue-bg);
+    transition: ease-in-out 0.2s;
+  }
+`;
 
-const Li = styled(Link)``;
+const Li = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  font-size: 14px;
+  &:hover {
+    /* background-color: #fff; */
+    color: var(--oxfordblue-bg);
+  }
+`;
+
 export default DropDownProfile;

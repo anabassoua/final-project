@@ -5,9 +5,11 @@ import { trashO } from "react-icons-kit/fa/trashO";
 import { format } from "date-fns";
 import Spinner from "./Spinner";
 import { spinner8 } from "react-icons-kit/icomoon/spinner8";
+import NoUser from "../assets/no_user.png";
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading, logout } = useAuth0();
+  const { user, isAuthenticated, isLoading, logout, loginWithRedirect } =
+    useAuth0();
 
   if (isLoading) {
     return (
@@ -17,10 +19,9 @@ const Profile = () => {
     );
   }
 
-  const formattedDate = format(
-    new Date(user.updated_at),
-    "MMMM dd, yyyy, 'at' HH:mm:ss 'UTC'"
-  );
+  const formattedDate = user
+    ? format(new Date(user.updated_at), "MMMM dd, yyyy, 'at' HH:mm:ss 'UTC'")
+    : null;
 
   //handle deleting user:
   const handleDeleteUser = () => {
@@ -61,7 +62,10 @@ const Profile = () => {
           </SecDiv>
         </>
       ) : (
-        <div>not connected</div>
+        <>
+          <NoUserFound src={NoUser} />
+          <button onClick={() => loginWithRedirect()}>Sign in</button>
+        </>
       )}
     </Container>
   );
@@ -80,7 +84,7 @@ const Container = styled.div`
 
 const Div = styled.div`
   /* border: 1px solid green; */
-  height: 300px;
+  height: 200px;
   width: 500px;
   border-radius: 10px;
   background-color: var(--richblack-bg);
@@ -89,6 +93,9 @@ const Div = styled.div`
 `;
 
 const SecDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 15px;
   height: 100px;
   width: 500px;
@@ -113,6 +120,7 @@ const Updated = styled.p`
 const Button = styled.button`
   display: flex;
   align-items: center;
+  width: 100px;
   gap: 5px;
   margin-top: 10px;
   border: none;
@@ -137,6 +145,10 @@ const SpinnerContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const NoUserFound = styled.img`
+  height: 400px;
 `;
 
 export default Profile;

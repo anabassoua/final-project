@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Search from "./Search";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
+import { bookmark } from "react-icons-kit/oct/bookmark";
 import Spinner from "./Spinner";
 import { spinner8 } from "react-icons-kit/icomoon/spinner8";
 
@@ -28,7 +29,10 @@ const Header = () => {
         {openProfile && <DropDownProfile />}
         {isAuthenticated ? (
           <Div>
-            <Watchlist to="/watchlist">My Watchlist</Watchlist>
+            <Watchlist to="/watchlist">
+              <Icon icon={bookmark} size={20} />
+              <p>Watchlist</p>
+            </Watchlist>
             <Img
               src={user.picture}
               alt="picture"
@@ -75,6 +79,9 @@ const Div = styled.div`
 `;
 
 const Watchlist = styled(Link)`
+  display: flex;
+  gap: 15px;
+  align-items: center;
   text-decoration: none;
   color: yellow;
 `;
