@@ -80,7 +80,7 @@ const Div = styled.div`
 
 const Watchlist = styled(Link)`
   display: flex;
-  gap: 15px;
+  gap: 8px;
   align-items: center;
   text-decoration: none;
   color: yellow;
