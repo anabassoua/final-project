@@ -27,8 +27,7 @@ const MovieDetails = () => {
   const time = movie.runtime;
   const hours = Math.floor(time / 60);
   const minutes = time % 60;
-  console.log("Hours", hours);
-  console.log("min", minutes);
+
   return (
     <Container>
       {loading ? (

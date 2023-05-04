@@ -32,9 +32,7 @@ const Drama = () => {
       body: JSON.stringify({ userId: user?.email, movie: addThis }),
     })
       .then((res) => res.json())
-      .then((resData) => {
-        console.log(resData);
-      })
+      .then((resData) => {})
       .catch((err) => {
         console.log(err);
       });
