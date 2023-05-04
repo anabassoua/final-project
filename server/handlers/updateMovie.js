@@ -9,7 +9,7 @@ const options = {
 
 const updateMovie = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const { userId, _id, updatedMovie } = req.body;
+  const { userId, movieId, updatedMovie } = req.body;
 
   try {
     await client.connect();
@@ -18,7 +18,7 @@ const updateMovie = async (req, res) => {
     const result = await db
       .collection("watchlist")
       .updateOne(
-        { userId, _id: new ObjectId(_id) },
+        { userId, "movie.id": movieId },
         { $set: { "movie.watched": updatedMovie.watched } }
       );
 
@@ -26,6 +26,9 @@ const updateMovie = async (req, res) => {
       return res
         .status(500)
         .json({ status: 500, message: "Failed to update movie!" });
+    }
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ status: 404, message: "Movie not found!" });
     }
     return res
       .status(200)

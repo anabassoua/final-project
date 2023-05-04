@@ -26,6 +26,34 @@ const Watchlist = () => {
     }
   }, [user]);
 
+  const handleWatchedToggle = (movieId, watched) => {
+    fetch("/api/update-movie", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user.email,
+        movieId: movieId,
+        updatedMovie: { watched: !watched },
+      }),
+    })
+      .then((res) => res.json())
+      .then((resData) => {
+        console.log(resData);
+        setWatchlist(
+          watchlist.map((movie) =>
+            movie.movie.id === movieId
+              ? { ...movie, movie: { ...movie.movie, watched: !watched } }
+              : movie
+          )
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleDeleteMovie = (movieId) => {
     fetch(
       `/api/delete-from-watchlist?userId=${user.email}&movieId=${movieId}`,
@@ -48,13 +76,6 @@ const Watchlist = () => {
       });
   };
 
-  // if (isLoading) {
-  //   return (
-  //     <SpinnerContainer>
-  //       <Spinner icon={spinner8} size={70} />
-  //     </SpinnerContainer>
-  //   );
-  // }
   return (
     <div>
       {loading ? (
@@ -82,6 +103,16 @@ const Watchlist = () => {
                       <Button onClick={() => handleDeleteMovie(movie.movie.id)}>
                         X
                       </Button>
+                      <WatchedButton
+                        onClick={() =>
+                          handleWatchedToggle(
+                            movie.movie.id,
+                            movie.movie.watched
+                          )
+                        }
+                      >
+                        {movie.movie.watched ? "Watched" : "Not Watched"}
+                      </WatchedButton>
                     </Card>
                   </ItemsContainer>
                 );
@@ -93,6 +124,21 @@ const Watchlist = () => {
     </div>
   );
 };
+
+const WatchedButton = styled.button`
+  position: absolute;
+  background: var(--mint);
+  border: none;
+  color: var(--richblack-bg);
+  padding: 5px;
+  border-radius: 5px;
+  bottom: 10px;
+  right: 10px;
+  cursor: pointer;
+  &:hover {
+    /* background: var(--light-mint); */
+  }
+`;
 
 const Div = styled.div`
   display: flex;
