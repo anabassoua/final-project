@@ -22,6 +22,7 @@ const { getSearch } = require("./handlers/getSearch");
 const { AddToWatchlist } = require("./handlers/addToWatchlist");
 const { getWatchlist } = require("./handlers/getWatchlist");
 const { deleteFromWatchlist } = require("./handlers/deleteFromWatchlist");
+const { updateMovie } = require("./handlers/updateMovie");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -54,6 +55,7 @@ express()
   .get("/movie/:id", getMoviebyId)
   .get("/api/watchlist", getWatchlist)
   .delete("/api/delete-from-watchlist", deleteFromWatchlist)
+  .put("/api/update-movie", updateMovie)
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
