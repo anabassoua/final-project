@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { useAuth0 } from "@auth0/auth0-react";
-import JSONPretty from "react-json-pretty";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
