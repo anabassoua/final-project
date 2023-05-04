@@ -42,11 +42,11 @@ const Watchlist = () => {
       .then((resData) => {
         console.log(resData);
         setWatchlist(
-          watchlist.map((movie) =>
-            movie.movie.id === movieId
+          watchlist.map((movie) => {
+            return movie.movie.id === movieId
               ? { ...movie, movie: { ...movie.movie, watched: !watched } }
-              : movie
-          )
+              : movie;
+          })
         );
       })
       .catch((err) => {
