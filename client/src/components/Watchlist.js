@@ -40,7 +40,7 @@ const Watchlist = () => {
     })
       .then((res) => res.json())
       .then((resData) => {
-        console.log(resData);
+        // console.log(resData);
         setWatchlist(
           watchlist.map((movie) => {
             return movie.movie.id === movieId
