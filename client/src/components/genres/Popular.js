@@ -59,7 +59,7 @@ const Popular = () => {
         </SpinnerContainer>
       ) : (
         <>
-          <Heading>Poular Movies</Heading>
+          <Heading>Popular Movies</Heading>
           <Div>
             <Container>
               {popular.map((movie) => {

@@ -59,7 +59,7 @@ const Horror = () => {
         </SpinnerContainer>
       ) : (
         <>
-          <Heading>Drama Movies</Heading>
+          <Heading>Horror Movies</Heading>
           <Div>
             <Container>
               {horror.map((movie) => {

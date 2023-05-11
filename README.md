@@ -26,3 +26,7 @@ You'll need two active terminals to be able to run this application properly.
 2. Go to the server folder by typing `cd server`.
 3. Install the dependencies with `yarn install`.
 4. Start the backend(server) with `yarn start`.
+
+### Live Demo 📀
+
+https://www.youtube.com/watch?v=_3jllbOhJcM
