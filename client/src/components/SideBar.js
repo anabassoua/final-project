@@ -20,40 +20,40 @@ const SideBar = () => {
       <Div to="/">Movie Finder</Div>
       <Categories>
         <Genres>Genres</Genres>
-        <MenuLink to="/genre/action">
+        <MenuLink to="/genre/Action">
           <FontAwesomeIcon
             icon={faFistRaised}
             style={{ color: "var(--mint)" }}
           />
           <p>Action</p>
         </MenuLink>
-        <MenuLink to="/genre/adventure">
+        <MenuLink to="/genre/Adventure">
           <FontAwesomeIcon icon={faCompass} style={{ color: "var(--mint)" }} />
           <p>Adventure</p>
         </MenuLink>
-        <MenuLink to="/genre/comedy">
+        <MenuLink to="/genre/Comedy">
           <FontAwesomeIcon
             icon={faGrinSquintTears}
             style={{ color: "var(--mint)" }}
           />
           <p>Comedy</p>
         </MenuLink>
-        <MenuLink to="/genre/drama">
+        <MenuLink to="/genre/Drama">
           <FontAwesomeIcon
             icon={faTheaterMasks}
             style={{ color: "var(--mint)" }}
           />
           <p>Drama</p>
         </MenuLink>
-        <MenuLink to="/genre/horror">
+        <MenuLink to="/genre/Horror">
           <FontAwesomeIcon icon={faGhost} style={{ color: "var(--mint)" }} />
           <p>Horror</p>
         </MenuLink>
-        <MenuLink to="/genre/scifiction">
+        <MenuLink to="/genre/Sci-fi">
           <FontAwesomeIcon icon={faRocket} style={{ color: "var(--mint)" }} />
           <p>Science Fiction</p>
         </MenuLink>
-        <MenuLink to="/genre/thriller">
+        <MenuLink to="/genre/Thriller">
           <FontAwesomeIcon icon={faMask} style={{ color: "var(--mint)" }} />
           <p>Thriller</p>
         </MenuLink>

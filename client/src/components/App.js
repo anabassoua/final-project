@@ -6,17 +6,11 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import Profile from "./Profile";
 import SignUp from "./SignUp";
-import Actions from "./genres/Actions";
-import Horror from "./genres/Horror";
-import Adventure from "./genres/Adventure";
-import Comedy from "./genres/Comedy";
-import Drama from "./genres/Drama";
-import Scifiction from "./genres/Scifiction";
-import Thriller from "./genres/Thriller";
-import Popular from "./genres/Popular";
+import Popular from "./Popular";
 import SearchResults from "./SearchResults";
 import Watchlist from "./Watchlist";
 import MovieDetails from "./MovieDetails";
+import MovieByGenre from "./MovieByGenre";
 
 const App = () => {
   const excludedRoutes = ["/signup"];
@@ -34,13 +28,7 @@ const App = () => {
             <Route path="/movie/:movieId" element={<MovieDetails />} />
             <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/results/:query" element={<SearchResults />} />
-            <Route path="/genre/action" element={<Actions />} />
-            <Route path="/genre/adventure" element={<Adventure />} />
-            <Route path="/genre/comedy" element={<Comedy />} />
-            <Route path="/genre/drama" element={<Drama />} />
-            <Route path="/genre/horror" element={<Horror />} />
-            <Route path="/genre/scifiction" element={<Scifiction />} />
-            <Route path="/genre/thriller" element={<Thriller />} />
+            <Route path="/genre/:genre" element={<MovieByGenre />} />
             <Route path="/popular" element={<Popular />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />

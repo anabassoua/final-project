@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Pagination from "../Pagination";
-import { Link } from "react-router-dom";
+import Pagination from "./Pagination";
+import { Link, useParams } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
 import { ic_bookmark_border } from "react-icons-kit/md/ic_bookmark_border";
-import Spinner from "../Spinner";
+import Spinner from "./Spinner";
 import { spinner8 } from "react-icons-kit/icomoon/spinner8";
 
-const Comedy = () => {
+const MovieByGenre = () => {
+  const { genre } = useParams();
   const { user, isAuthenticated } = useAuth0();
-  const [comedy, setComedy] = useState([]);
+  const [horror, setHorror] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const totalPages = 20;
@@ -40,16 +41,16 @@ const Comedy = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/genre/comedy?page=${page}`)
+    fetch(`/genre/${genre}?page=${page}`)
       .then((res) => res.json())
       .then((resData) => {
-        setComedy(resData.data.results);
+        setHorror(resData.data.results);
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [page]);
+  }, [genre, page]);
 
   return (
     <div>
@@ -59,10 +60,10 @@ const Comedy = () => {
         </SpinnerContainer>
       ) : (
         <>
-          <Heading>Comedy Movies</Heading>
+          <Heading>{genre} Movies</Heading>
           <Div>
             <Container>
-              {comedy.map((movie) => {
+              {horror.map((movie) => {
                 return (
                   <ItemsContainer key={movie.id}>
                     <Card>
@@ -88,9 +89,9 @@ const Comedy = () => {
               })}
             </Container>
           </Div>
-          <Pagination page={page} setPage={setPage} totalPages={totalPages} />
         </>
       )}
+      <Pagination page={page} setPage={setPage} totalPages={totalPages} />
     </div>
   );
 };
@@ -157,4 +158,4 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export default Comedy;
+export default MovieByGenre;

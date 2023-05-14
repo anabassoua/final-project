@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Pagination from "./Pagination";
 import { Link } from "react-router-dom";
-import Pagination from "../Pagination";
 import { Icon } from "react-icons-kit";
 import { star } from "react-icons-kit/fa/star";
 import { ic_bookmark_border } from "react-icons-kit/md/ic_bookmark_border";
-import Spinner from "../Spinner";
+import Spinner from "./Spinner";
 import { spinner8 } from "react-icons-kit/icomoon/spinner8";
 
-const Adventure = () => {
+const Popular = () => {
   const { user, isAuthenticated } = useAuth0();
-  const [adventure, setAdventure] = useState([]);
+  const [popular, setPopular] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const totalPages = 20;
@@ -40,10 +40,10 @@ const Adventure = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/genre/adventure?page=${page}`)
+    fetch(`/popular?page=${page}`)
       .then((res) => res.json())
       .then((resData) => {
-        setAdventure(resData.data.results);
+        setPopular(resData.data.results);
         setLoading(false);
       })
       .catch((err) => {
@@ -59,10 +59,10 @@ const Adventure = () => {
         </SpinnerContainer>
       ) : (
         <>
-          <Heading>Adventure Movies</Heading>
+          <Heading>Popular Movies</Heading>
           <Div>
             <Container>
-              {adventure.map((movie) => {
+              {popular.map((movie) => {
                 return (
                   <ItemsContainer key={movie.id}>
                     <Card>
@@ -157,4 +157,4 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export default Adventure;
+export default Popular;

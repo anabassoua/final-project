@@ -23,6 +23,7 @@ const { AddToWatchlist } = require("./handlers/addToWatchlist");
 const { getWatchlist } = require("./handlers/getWatchlist");
 const { deleteFromWatchlist } = require("./handlers/deleteFromWatchlist");
 const { updateMovie } = require("./handlers/updateMovie");
+const { getMovieByGenre } = require("./handlers/getMovieByGenre");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -39,6 +40,7 @@ express()
   // ---------------------------------
   // add new endpoints here 👇
   .get("/trending", getTrendingMovies)
+  .get("/genre/:genre", getMovieByGenre)
   .get("/genre/action", getActions)
   .get("/genre/adventure", getAdventure)
   .get("/genre/comedy", getComedy)
