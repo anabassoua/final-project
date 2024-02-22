@@ -33,4 +33,4 @@ https://www.youtube.com/watch?v=_3jllbOhJcM
 
 ## Screenshots
 
-![Screenshot 2024-02-21 at 7 17 39 PM](https://github.com/anabassoua/final-project/assets/48926271/7d2fc7d4-6d2c-47c9-ac22-20bea123b81d)
+![Homepage](/client/src/assets/homepage.jpg)
