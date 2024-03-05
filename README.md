@@ -32,5 +32,3 @@ You'll need two active terminals to be able to run this application properly.
 https://www.youtube.com/watch?v=_3jllbOhJcM
 
 ## Screenshots
-
-![Homepage](/client/src/assets/homepage.jpg)
